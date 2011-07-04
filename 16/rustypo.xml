@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="content" method="upgrade">
+	<name>Русская типографика</name>
+	<author>Рябов Денис</author>
+	<creationDate>Май 2011</creationDate>
+	<copyright>© 2006-2011 by Denis Ryabov. All rights reserved.</copyright>
+	<license>This script is released under the GNU/GPL License</license>
+	<authorEmail>dryabov@yandex.ru</authorEmail>
+	<version>2.0.4</version>
+	<description>Плагин «Русская типографика» делает Вашу информацию приятнее на вкус и на ощупь. Не забудьте опубликовать (включить) плагин «Русская типографика» и проверить его настройки (их более 50-ти!). Рекомендуется сделать мамбот последним в порядке вызовов мамботов группы content, чтобы он не затрагивал информацию в конструкциях вида {loadposition ...} и т.д. Возможности мамбота: производится замена обычных кавычек "" на елочки «» и лапки „“ (для вложенных); неразрывный пробел перед тире, само тире из коротенького «минуса» - становится «нормальным» —; вставляется неразрывный пробел между инициалами и фамилией (теперь не будет «Пушкин» на одной строке, а «А.С.» — на другой); вставляется неразрывный пробел после сокращений (ул. Ленина), арабских (38 попугаев) и римских цифр (XXVIII съезд), перед некоторыми сокращениями (пять руб.), в устоявшихся сокращениях (и т.д., и т.п., и др.); убираются пробелы перед знаками пунктуации; 1/2, 1/4 и 3/4 заменяются на ½, ¼ и ¾; возможность прикреплять короткие слова к последующим, а частицы — к предыдущим словам; не разрывать слова при помощи неразрывного пробела / тега nobr / стиля white-space:nowrap; настраиваемые символы тире и короткого пробела; не разрывать номера телефонов; не разрывать числа, разбитые на разряды (например, 1 000 000); не разрывать двойные слова (например, два-три, из-за); не отрывать абревиатуру формы собственности от названия организации (например, ООО «Рога и копыта»); различные автозамены символов (например, (C) на ©, и др.); исправление некоторых пунктуационных ошибок; и многое-многое другое. Разработка мамбота: © 2006–2011 <a href="mailto:dryabov@yandex.ru">Рябов Денис</a>. Поддержка осуществляется на форуме: <a href="http://joomlaforum.ru/index.php/topic,10544">http://joomlaforum.ru/index.php/topic,10544</a>.</description>
+	<files>
+		<filename plugin="rustypo">rustypo.php</filename>
+	</files>
+	<config><fields name="params">
+	<fieldset name="basic">
+		<field name="titles" type="radio" default="1" label="Обрабатывать заголовки" description="Применять или нет мамбот к содержимому заголовков статей и модулей (см. предупреждение в описании мамбота)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spacer1" type="spacer" label="&lt;hr&gt;&lt;b&gt;Типографские символы&lt;/b&gt;" />
+		<field name="typenbsp" type="list" default="1" label="Не разрывать текст при помощи" description="Каким образом запрещать браузеру пользователя разрывать текст на строки в нежелательных местах">
+			<option value="0">неразывного пробела &amp;amp;nbsp</option>
+			<option value="1">обрамления тегами &amp;lt;nobr&amp;gt;&amp;hellip;&amp;lt;/nobr&amp;gt;</option>
+			<option value="2">обрамления тегами &amp;lt;span style="white-space:nowrap"&amp;gt;&amp;hellip;&amp;lt;/span&amp;gt;</option>
+		</field>
+		<field name="typethinsp" type="list" default="1" label="Короткий пробел (между инициалами и в сокращениях)" description="Использовать в качестве короткого пробела (после точки между инициалами и короткими сокращениями — А.С., т.к. и т.д.) символ из списка">
+			<option value="0">писать слитно</option>
+			<option value="1">не разрывать при помощи… (см. выше)</option>
+			<option value="2">неразрывный пробел &amp;amp;nbsp</option>
+			<option value="3">короткий пробел &amp;amp;thinsp; (не рекомендуется)</option>
+		</field>
+		<field name="typedash" type="list" default="0" label="Тире" description="Использовать в качестве тире символ из списка">
+			<option value="0">длинное тире &amp;amp;mdash;</option>
+			<option value="1">короткое тире &amp;amp;ndash;</option>
+			<option value="2">знак минус &amp;amp;minus;</option>
+			<option value="3">дефис -</option>
+		</field>
+		<field name="typenumdash" type="list" default="1" label="Тире для чисел" description="Использовать для указания диапазонов (например, &amp;lt;nobr&amp;gt;1941–1945&amp;lt;/nobr&amp;gt;) в качестве тире символ из списка">
+			<option value="0">длинное тире &amp;amp;mdash;</option>
+			<option value="1">короткое тире &amp;amp;ndash;</option>
+			<option value="2">знак минус &amp;amp;minus;</option>
+			<option value="3">дефис -</option>
+		</field>
+		<field name="spacer2" type="spacer" label="&lt;hr&gt;&lt;b&gt;Основная типографика&lt;/b&gt;" />
+		<field name="quotes" type="radio" default="1" label="Расставлять русские кавычки" description="Производится замена обычных кавычек &amp;quot;&amp;quot; на елочки «» и лапки „“ (для вложенных)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="dash" type="radio" default="1" label="Заменять дефис на тире" description="Заменять конструкцию &amp;lt;nobr&amp;gt;« - »&amp;lt;/nobr&amp;gt; (дефис, обрамленный пробелами) на тире">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="speech" type="radio" default="1" label="Заменять дефис на тире при прямой речи" description="Заменять дефис в начале строки на тире (прямая речь)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spacer3" type="spacer" label="&lt;hr&gt;&lt;b&gt;Не разрывать&lt;/b&gt;" />
+		<field name="initials" type="radio" default="1" label="Не отрывать инициалы от фамилии" description="Вставляется неразрывный пробел между инициалами и фамилией (теперь не будет «Пушкин» на одной строке, а «А.С.» — на другой)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="abr" type="radio" default="1" label="Не разрывать сокращения" description="Вставляется неразрывный пробел после и перед некоторыми сокращениями (ул. Ленина, пять руб.)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="unit" type="radio" default="1" label="Не разрывать единицы измерения" description="Вставляется неразрывный пробел перед некоторыми единицами измерения (пять руб., семь млн.)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="shortatend" type="radio" default="1" label="Прикреплять короткие слова в конце абзаца" description="Прикреплять короткие слова (до 4 букв) к предыдущим в конце абзаца, чтобы не оставались короткие строки">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="shortwords" type="radio" default="1" label="Прикреплять короткие слова к следующим" description="Прикреплять короткие слова к следущим словам, а частицы — к предыдущим">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="etc" type="radio" default="1" label="Не разрывать союз «и» с сокращениями" description="Вставляется неразрывный пробел в сокращениях и др., и пр., и т.д., и т.п., в т.ч.">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="nobrcopyright" type="radio" default="1" label="Не отрывать знак ©" description="Не отрывать знак © от последующего текста">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="orgs" type="radio" default="1" label="Не отрывать абревиатуру формы собственности от названия организации" description="Делает неразрывными названия организаций и абревиатуру формы собственности (ООО, ОАО, ЗАО или ЧП)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="doubleword" type="radio" default="1" label="Не разрывать двойные слова" description="Делает неразрывными двойные слова (светло-красный), фамилии (Иванов-Васильев)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="phonenum" type="radio" default="1" label="Делать неразрывными номера телефонов" description="Не позволять браузеру пользователя переносить часть телефонного номера на новую строку">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spacer4" type="spacer" label="&lt;hr&gt;&lt;b&gt;Автозамены&lt;/b&gt;" />
+		<field name="htmlents" type="radio" default="0" label="Преобразовывать символы в html-сущности" description="Выдавать символы типа «, … и т.д. (имеющиеся в кодировке windows-1251) в виде &amp;amp;amp;laquo;, &amp;amp;amp;hellip; и т.д.">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="xmlcomp" type="radio" default="0" label="Заменять кавычки на html-сущности" description="Заменять символы &amp;quot; и &amp;amp;#39; на &amp;amp;amp;quot; и &amp;amp;amp;#39; соответственно">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="dots" type="radio" default="1" label="Заменять три точки на символ троеточия" description="Заменять ... на …">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="plusminus" type="radio" default="1" label="Заменять +/- на символ ±" description="Заменять +/- на символ ±">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="lgequals" type="radio" default="1" label="Заменять &amp;lt;= и &amp;gt;= на символы &amp;le; и &amp;ge;" description="Заменять &amp;lt;= и &amp;gt;= на символы &amp;le; и &amp;ge;">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="frac" type="radio" default="1" label="Заменять дроби 1/2, 1/4 и 3/4" description="Заменять дроби 1/2, 1/4 и 3/4 на соответствующие символы &amp;frac12;, &amp;frac14; и &amp;frac34;">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="fracext" type="radio" default="0" label="Заменять дроби 1/3, 2/3, 1/8, 3/8, 5/8, 7/8" description="Заменять дроби 1/3, 2/3, 1/8, 3/8, 5/8, 7/8 на соответствующие символы &amp;#8531;, &amp;#8532;, &amp;#8539;, &amp;#8540;, &amp;#8541; и &amp;#8542;. Не рекомендуется, т.к. не все шрифты содержат эти символы!!!">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="copyright" type="radio" default="1" label="Заменять (C) на ©" description="Заменять (C) и (c) на ©">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="registered" type="radio" default="1" label="Заменять (R) на &lt;sup&gt;®&lt;/sup&gt;" description="Заменять (R) и (r) на &lt;sup&gt;®&lt;/sup&gt;">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="trademark" type="radio" default="1" label="Заменять (TM) на ™" description="Заменять (TM) и (tm) на ™">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spacer5" type="spacer" label="&lt;hr&gt;&lt;b&gt;Орфография&lt;/b&gt;" />
+		<field name="aquotes" type="radio" default="1" label="Выносить кавычки из ссылок" description="Если текст ссылки представляет собой текст в кавычках, то выносить кавычки за пределы ссылки">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="apunct" type="radio" default="1" label="Выносить пробелы и знаки препинания из ссылок" description="Если в начале или конце текста ссылки стоят пробелы или знаки препинания, то они будут вынесены за пределы ссылки">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="indices" type="radio" default="1" label="Не отрывать верхние и нижние индексы от предыдущих символов" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spacesatend" type="radio" default="1" label="Убирать лишние пробелы в конце строки" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spinbracket" type="radio" default="1" label="Убирать пробелы после открывающей скобки и перед закрыващей скобками" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spbeforebracket" type="radio" default="1" label="Пробел между словом и открывающей скобкой" description="Добавлять пробел между словом и открывающей скобкой, если его нет (отключите, если у Вас на сайте есть формулы вида f(x) и т.д.)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="commanum" type="radio" default="1" label="Проверка в расстановке запятых между текстом и числами" description="Делает проверку в расстановке запятых и меняет слитно написанное «слово,число» на «слово, число» (напр., ул. Ленина, 11)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="dotdash" type="radio" default="1" label="Не отбивать тире от запятой и точки" description="Убирать пробел между точкой или запятой и тире">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="exclquest" type="radio" default="1" label="Заменять !? на ?!" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="exclquestdots" type="radio" default="1" label="Убирать лишнюю точку в !... и ?..." description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="sppunct" type="radio" default="1" label="Убирать пробел перед знаками препинания" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="nummarksp" type="radio" default="1" label="Пробел между знаком № или § и числом" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="numnummark" type="radio" default="1" label="Слитное написание №№" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="sectsectmark" type="radio" default="1" label="Слитное написание §§" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="spacer6" type="spacer" label="&lt;hr&gt;&lt;b&gt;Числа&lt;/b&gt;" />
+		<field name="sizes" type="radio" default="1" label="Обрабатывать размерные конструкции (200&amp;times;500)" description="Заменять текст типа 200x500 или 200*500 на 200&amp;times;500">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="interval" type="radio" default="1" label="Обрабатывать диапазон численных значений" description="Не разрывать текст типа &amp;lt;nobr&amp;gt;1941–1945&amp;lt;/nobr&amp;gt; и вставлять символ «Тире для числах» между числами">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="minus" type="radio" default="1" label="Минус перед цифрами" description="Заменять дефис перед цифрами на знак минус, например -10 на &amp;minus;10">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="numnbsp" type="radio" default="1" label="Неразрывный пробел после арабских цифр" description="Не отрывать арабские цифры от последующего текста (например, 25 февраля)">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="romenbsp" type="radio" default="1" label="Неразрывный пробел после римских цифр" description="Не отрывать римские цифры от последующего текста">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="deg" type="radio" default="1" label="Заменять C в конструкциях градусов на °C" description="Заменять текст типа 25 C на 25 °C">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="percent" type="radio" default="1" label="Не разрывать числа и знаки процента (%) и промилле (‰)" description="Знаки процента (%) и промилле (‰) прикреплять к числам, к которым они относятся">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="numnum" type="radio" default="1" label="Не разрывать числа, разбитые на разряды (напр., 25 000)" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+		<field name="angle" type="radio" default="1" label="Не разрывать углы (градусы, минуты, секунды)" description="">
+			<option value="0">Нет</option>
+			<option value="1">Да</option>
+		</field>
+	</fieldset>
+	</fields></config>
+</extension>
