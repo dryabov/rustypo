@@ -44,6 +44,7 @@ define('NUMDASH',    "\x07");
 function Proof( $text, &$botParams, $allowtags=true )
 {
 	global $Refs, $RefsCntr;
+
 	$htmlents = array(
 		'&#8222;'=>'„','&#8219;'=>'“','&#8220;'=>'”','&#8216;'=>'‘','&#8217;'=>'’',
 		'&laquo;'=>'«','&raquo;'=>'»','&hellip;'=>'…','&euro;'=>'€','&permil;'=>'‰',
@@ -58,7 +59,7 @@ function Proof( $text, &$botParams, $allowtags=true )
 	if( $botParams->get( 'shortatend' ) ) $text = preg_replace( '/([а-яА-Яa-zA-Z]) ([а-яА-Яa-zA-Z]{1,5}(?>[.!?…]*))(?=$|<\/p>|<\/div>|<br>|<br \/>)/u','\\1'.NOBRSPACE.'\\2', $text); // Последнее короткое слово в абзаце привязывать к предыдущему
 
 //ПРЯМАЯ РЕЧЬ
-	if( $botParams->get( 'speech' ) ) $text = preg_replace( '/(^|<p>|<br>|<br \/>)[  ]?- /u','\\1— ', $text ); // Прямая речь - дефис в начале строки и после тегов <p>, <br> и <br />
+	if( $botParams->get( 'speech' ) ) $text = preg_replace( '/(^|<p>|<br>|<br \/>)\s*- /u','\\1— ', $text ); // Прямая речь - дефис в начале строки и после тегов <p>, <br> и <br />
 
 // ВЫРЕЗАЕМ ТЕГИ
 	$Refs = array();

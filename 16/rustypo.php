@@ -69,7 +69,7 @@ class plgContentRustypo extends JPlugin
 		if( $params->get( 'shortatend' ) ) $text = preg_replace( '/([а-яА-Яa-zA-Z]) ([а-яА-Яa-zA-Z]{1,5}(?>[.!?…]*))(?=$|<\/p>|<\/div>|<br>|<br \/>)/u','\\1'.NOBRSPACE.'\\2', $text); // Последнее короткое слово в абзаце привязывать к предыдущему
 
 		// ПРЯМАЯ РЕЧЬ
-		if( $params->get( 'speech' ) ) $text = preg_replace( '/(^|<p>|<br>|<br \/>)[  ]?- /u','\\1— ', $text ); // Прямая речь - дефис в начале строки и после тегов <p>, <br> и <br />
+		if( $params->get( 'speech' ) ) $text = preg_replace( '/(^|<p>|<br>|<br \/>)\s*- /u','\\1— ', $text ); // Прямая речь - дефис в начале строки и после тегов <p>, <br> и <br />
 
 		// ВЫРЕЗАЕМ ТЕГИ
 		self::$Refs = array();
