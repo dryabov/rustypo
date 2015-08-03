@@ -69,7 +69,7 @@ class plgContentRustypo extends JPlugin
 		if( $params->get( 'shortatend' ) ) $text = preg_replace( '/([а-яА-Яa-zA-Z]) ([а-яА-Яa-zA-Z]{1,5}(?>[.!?…]*))(?=$|<\/p>|<\/div>|<br>|<br \/>)/u','\\1'.NOBRSPACE.'\\2', $text); // Последнее короткое слово в абзаце привязывать к предыдущему
 
 		// ПРЯМАЯ РЕЧЬ
-		if( $params->get( 'speech' ) ) $text = preg_replace( '/(^|<p>|<br>|<br \/>)\s*- /u','\\1— ', $text ); // Прямая речь - дефис в начале строки и после тегов <p>, <br> и <br />
+		if( $params->get( 'speech' ) ) $text = preg_replace( '/(^|<p>|<br>|<br \/>)[\s*- /u','\\1— ', $text ); // Прямая речь - дефис в начале строки и после тегов <p>, <br> и <br />
 
 		// ВЫРЕЗАЕМ ТЕГИ
 		self::$Refs = array();
@@ -231,7 +231,7 @@ class plgContentRustypo extends JPlugin
 		if( $params->get( 'romenbsp' ) ) $text = preg_replace( '/([ '.DASH.NUMDASH.']|^)((?>[IVXLCDM]+)) /u','\\1\\2'.NOBRSPACE, $text ); // Неразрывный пробел после римских цифр
 		//TODO: Неразрывный пробел в конструкциях вида 10 кг и т.д. (если предыдущее правило отключено)
 		//TODO: Вставлять неразрывный пробел между числом и сокращением размерностью, чтобы не было 1кг (причем только для общепринятых сокращений размерностей...)
-		if( $params->get( 'deg' ) ) $text = preg_replace( '/([-+]?(?>\d+)(?:[.,](?>\d*))?)[  '.NOBRSPACE.']?[CС]\b/u','\\1&deg; C', $text); // Заменяет C в конструкциях градусов на °C
+		if( $params->get( 'deg' ) ) $text = preg_replace( '/([-+]?(?>\d+)(?:[.,](?>\d+))?)[  '.NOBRSPACE.']?[CС]\b/u','\\1&deg; C', $text); // Заменяет C в конструкциях градусов на °C
 		if( $params->get( 'percent' ) ) $text = preg_replace( '/(\d)[  '.NOBRSPACE.'](?=%|‰)/u','\\1', $text); // Знаки процента (%) и промилле (‰) прикреплять к числам, к которым они относятся
 		if( $params->get( 'numnum' ) ) $text = preg_replace( '/(\d) (?=\d)/u','\\1'.NOBRSPACE, $text ); // Не разрывать 25 000
 

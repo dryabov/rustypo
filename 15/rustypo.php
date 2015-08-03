@@ -221,7 +221,7 @@ function Proof( $text, &$botParams, $allowtags=true )
 	if( $botParams->get( 'romenbsp' ) ) $text = preg_replace( '/([ '.DASH.NUMDASH.']|^)((?>[IVXLCDM]+)) /u','\\1\\2'.NOBRSPACE, $text ); // Неразрывный пробел после римских цифр
 	//TODO: Неразрывный пробел в конструкциях вида 10 кг и т.д. (если предыдущее правило отключено)
 	//TODO: Вставлять неразрывный пробел между числом и сокращением размерностью, чтобы не было 1кг (причем только для общепринятых сокращений размерностей...)
-	if( $botParams->get( 'deg' ) ) $text = preg_replace( '/([-+]?(?>\d+)(?:[.,](?>\d*))?)[  '.NOBRSPACE.']?[CС]\b/u','\\1&deg; C', $text); // Заменяет C в конструкциях градусов на °C
+	if( $botParams->get( 'deg' ) ) $text = preg_replace( '/([-+]?(?>\d+)(?:[.,](?>\d+))?)[  '.NOBRSPACE.']?[CС]\b/u','\\1&deg; C', $text); // Заменяет C в конструкциях градусов на °C
 	if( $botParams->get( 'percent' ) ) $text = preg_replace( '/(\d)[  '.NOBRSPACE.'](?=%|‰)/u','\\1', $text); // Знаки процента (%) и промилле (‰) прикреплять к числам, к которым они относятся
 	if( $botParams->get( 'numnum' ) ) $text = preg_replace( '/(\d) (?=\d)/u','\\1'.NOBRSPACE, $text ); // Не разрывать 25 000
 
