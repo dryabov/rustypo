@@ -1,9 +1,9 @@
 <?php
 /********************************************
 * RussianTypography plugin for Joomla       *
-* Copyright (C) 2006-2011 by Denis Ryabov   *
+* Copyright (C) 2006-2023 by Denis Ryabov   *
 *                       [dryabov@yandex.ru] *
-* Version    : 2.0.4                        *
+* Version    : 2.0.5                        *
 * License    : Released under GPL           *
 ********************************************/
 
