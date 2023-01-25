@@ -98,7 +98,7 @@ class plgContentRustypo extends JPlugin
 		if( $params->get( 'quotes' ) )
 		{
 			$text = preg_replace( '/(['.TAGEND.'\(  ]|^)"([^"]*)([^  "\(])"/u', '\\1«\\2\\3»', $text ); // Расстановка кавычек-"елочек"
-			if( JString::stristr( $text, '"' ) ) // Если есть вложенные кавычки
+			if( stristr( $text, '"' ) ) // Если есть вложенные кавычки
 			{
 				$text = preg_replace( '/(['.TAGEND.'(  ]|^)"([^"]*)([^  "(])"/u', '\\1«\\2\\3»', $text );
 				while( preg_match( '/«[^»]*«[^»]*»/u', $text ) )
